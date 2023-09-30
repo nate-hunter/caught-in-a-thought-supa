@@ -2,6 +2,7 @@ import { RealtimeChannel, Session } from '@supabase/supabase-js';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { setReturnPath } from './Login';
 import { supaClient } from './supa-client';
 
 export type UserProfile = {
@@ -12,10 +13,6 @@ export type UserProfile = {
 export type SupashipUserInfo = {
   session: Session | null;
   profile: UserProfile | null;
-};
-
-const setReturnPath = () => {
-  localStorage.setItem('returnPath', window.location.pathname);
 };
 
 export const useSession = (): SupashipUserInfo => {
@@ -34,6 +31,7 @@ export const useSession = (): SupashipUserInfo => {
         setUserInfo({ session, profile: null });
       });
     });
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -48,6 +46,7 @@ export const useSession = (): SupashipUserInfo => {
       channel?.unsubscribe();
       setChannel(null);
     }
+    // eslint-disable-next-line
   }, [userInfo.session]);
 
   async function listenToUserProfileChanges(userId: string) {
