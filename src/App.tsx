@@ -1,4 +1,7 @@
+import { createContext } from 'react';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
+
+import { SupashipUserInfo, useSession } from './use-session';
 
 import { AllPosts } from './AllPosts';
 import { MessageBoard } from './MessageBoard';
@@ -36,6 +39,11 @@ const router = createBrowserRouter([
   },
 ]);
 
+export const UserContext = createContext<SupashipUserInfo>({
+  session: null,
+  profile: null,
+});
+
 function App() {
   return <RouterProvider router={router} />;
 }
@@ -43,10 +51,12 @@ function App() {
 export default App;
 
 function Layout() {
+  const supashipUserInfo = useSession();
+
   return (
-    <>
+    <UserContext.Provider value={supashipUserInfo}>
       <NavBar />
       <Outlet />
-    </>
+    </UserContext.Provider>
   );
 }
