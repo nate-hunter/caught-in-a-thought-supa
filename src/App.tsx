@@ -7,7 +7,7 @@ import { AllPosts } from './AllPosts';
 import { MessageBoard } from './MessageBoard';
 import { NavBar } from './NavBar';
 import { PostView } from './PostView';
-import { Welcome } from './Welcome';
+import { Welcome, loader as welcomeLoader } from './Welcome';
 
 import './App.css';
 
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
       {
         path: 'welcome',
         element: <Welcome />,
-        // loader: welcomeLoader,
+        loader: welcomeLoader,
       },
     ],
   },
