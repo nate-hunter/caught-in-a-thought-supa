@@ -1,6 +1,9 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+
 import { UserContext } from './App';
+import { Login } from './Login';
+import { UserMenu } from './UserMenu';
 
 export const NavBar = () => {
   const { session } = useContext(UserContext);
@@ -26,7 +29,7 @@ export const NavBar = () => {
               message board
             </Link>
           </li>
-          <li className="nav-auth-item">{session?.user ? 'user' : 'nope'}</li>
+          <li className="nav-auth-item">{session?.user ? <UserMenu /> : <Login />}</li>
         </ul>
       </nav>
     </>
