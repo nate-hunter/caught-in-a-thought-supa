@@ -4,6 +4,7 @@ export type DialogProps = {
   allowClose?: boolean;
   contents: React.ReactNode;
   open: boolean;
+  // eslint-disable-next-line
   dialogStateChange?: (open: boolean) => void;
 };
 
@@ -20,6 +21,7 @@ export const Dialog = ({
     if (open !== showModal) {
       setShowModal(open);
     }
+    // eslint-disable-next-line
   }, [open]);
 
   function updateDialogState(open: boolean) {
@@ -32,6 +34,7 @@ export const Dialog = ({
       <div className="dialog-container"></div>
       <div
         onClick={({ target }) => {
+          // eslint-disable-next-line
           if (!allowClose || dialog.current?.contains(target as any)) {
             return;
           }
