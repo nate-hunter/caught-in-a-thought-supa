@@ -1,10 +1,13 @@
+import { createContext } from 'react';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
+
+import { SupashipUserInfo, useSession } from './use-session';
 
 import { AllPosts } from './AllPosts';
 import { MessageBoard } from './MessageBoard';
 import { NavBar } from './NavBar';
 import { PostView } from './PostView';
-import { Welcome } from './Welcome';
+import { Welcome, loader as welcomeLoader } from './Welcome';
 
 import './App.css';
 
@@ -30,11 +33,16 @@ const router = createBrowserRouter([
       {
         path: 'welcome',
         element: <Welcome />,
-        // loader: welcomeLoader,
+        loader: welcomeLoader,
       },
     ],
   },
 ]);
+
+export const UserContext = createContext<SupashipUserInfo>({
+  session: null,
+  profile: null,
+});
 
 function App() {
   return <RouterProvider router={router} />;
@@ -43,10 +51,12 @@ function App() {
 export default App;
 
 function Layout() {
+  const supashipUserInfo = useSession();
+
   return (
-    <>
+    <UserContext.Provider value={supashipUserInfo}>
       <NavBar />
       <Outlet />
-    </>
+    </UserContext.Provider>
   );
 }

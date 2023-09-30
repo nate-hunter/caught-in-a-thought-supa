@@ -1,6 +1,13 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
+import { UserContext } from './App';
+import { Login } from './Login';
+import { UserMenu } from './UserMenu';
+
 export const NavBar = () => {
+  const { session } = useContext(UserContext);
+
   return (
     <>
       <nav className="nav-bar">
@@ -14,7 +21,6 @@ export const NavBar = () => {
           <h2 style={{ color: '#4ee17c', fontSize: '32px', fontWeight: '900' }}>
             Caught-In-A-Thought
           </h2>
-          {/* <h2>Caught-In-A-Thought</h2> */}
         </Link>
 
         <ul className="nav-right-list">
@@ -23,6 +29,7 @@ export const NavBar = () => {
               message board
             </Link>
           </li>
+          <li className="nav-auth-item">{session?.user ? <UserMenu /> : <Login />}</li>
         </ul>
       </nav>
     </>
