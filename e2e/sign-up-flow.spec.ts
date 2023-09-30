@@ -32,7 +32,7 @@ test.describe('User auth', () => {
     await signUp(page, userEmail, userPassword, userName, true);
     await page.goto('http://localhost:1337');
     const welcomeNotice = page.locator('h2', {
-      hasText: 'Welcome to Supaship!',
+      hasText: 'Welcome to Caught-In-A-Thought!',
     });
     await expect(welcomeNotice).toHaveCount(1);
   });
@@ -41,7 +41,7 @@ test.describe('User auth', () => {
     await signUp(page, userEmail, userPassword, userName);
     await page.goto('http://localhost:1337/welcome');
     const welcomeNotice = page.locator('h2', {
-      hasText: 'Welcome to Supaship!',
+      hasText: 'Welcome to Caught-In-A-Thought!',
     });
     await expect(welcomeNotice).toHaveCount(0);
     const logoutButton = page.locator('button', { hasText: 'Logout' });
@@ -55,7 +55,7 @@ test.describe('User auth', () => {
       timeout: 2000,
     });
     const welcomeNotice = page.locator('h2', {
-      hasText: 'Welcome to Supaship!',
+      hasText: 'Welcome to Caught-In-A-Thought!',
     });
     await expect(welcomeNotice).toHaveCount(0);
   });
@@ -73,7 +73,7 @@ test.describe('User auth', () => {
       await expect(submitButton).toBeDisabled();
       await page.keyboard.press('Enter');
       const welcomeHeader = page.locator('h2', {
-        hasText: 'Welcome to Supaship!',
+        hasText: 'Welcome to Caught-In-A-Thought!',
       });
       await expect(welcomeHeader).toHaveCount(1);
     });
@@ -101,7 +101,7 @@ test.describe('User auth', () => {
       await expect(submitButton).toBeDisabled();
       await page.keyboard.press('Enter');
       const welcomeHeader = page.locator('h2', {
-        hasText: 'Welcome to Supaship!',
+        hasText: 'Welcome to Caught-In-A-Thought!',
       });
       await expect(welcomeHeader).toHaveCount(1);
       await expect(validation).toHaveText('Username must be less than 15 characters long');
@@ -115,7 +115,7 @@ test.describe('User auth', () => {
       await expect(submitButton).toBeDisabled();
       await page.keyboard.press('Enter');
       const welcomeHeader = page.locator('h2', {
-        hasText: 'Welcome to Supaship!',
+        hasText: 'Welcome to Caught-In-A-Thought!',
       });
       await expect(welcomeHeader).toHaveCount(1);
       await expect(validation).toHaveText('Username must be at least 4 characters long');
@@ -137,7 +137,7 @@ test.describe('User auth', () => {
     await expect(submitButton).toBeEnabled();
     await page.keyboard.press('Enter');
     const welcomeHeader = page.locator('h2', {
-      hasText: 'Welcome to Supaship!',
+      hasText: 'Welcome to Caught-In-A-Thought!',
     });
     await expect(welcomeHeader).toHaveCount(1);
     await expect(validation).toHaveText(`Username "testuser" is already taken`);
